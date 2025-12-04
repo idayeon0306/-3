@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>관리자 페이지</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* 공통 관리자 섹션 카드 */
+    .admin-section {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 6px rgba(15,23,42,0.04);
+      font-size: 13px;
+    }
+
+    .admin-section h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .admin-section p {
+      margin-bottom: 8px;
+      color: #6b7280;
+    }
+
+    /* 필터 영역 */
+    .admin-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin-top: 6px;
+    }
+
+    .admin-filter-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .admin-filter-item select {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      font-size: 13px;
+    }
+
+    /* 상태 관리 테이블 */
+    .machine-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .machine-table th,
+    .machine-table td {
+      border: 1px solid #e5e7eb;
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    .machine-table th {
+      background: #eef2ff;
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .machine-table td select,
+    .machine-table td input,
+    .machine-table td textarea {
+      font-size: 12px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .machine-table td select {
+      padding: 3px 4px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+    }
+
+    .machine-table td input[type="text"],
+    .machine-table td input[type="number"] {
+      padding: 3px 4px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+    }
+
+    .machine-table td textarea {
+      padding: 3px 4px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      resize: vertical;
+    }
+
+    /* 통계 요약 뱃지 */
+    .admin-stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    .admin-stat-badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #111827;
+      border: 1px solid #d4d9ff;
+    }
+
+    .admin-stat-badge span {
+      font-weight: 700;
+      margin-left: 2px;
+    }
+
+    .admin-help {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+<div id="wrap">
+
+  <!-- 공통 헤더 -->
+  <header>
+    <h1>연세대학교 미래캠퍼스 세탁기/건조기 표시 서비스</h1>
+    <div class="top-right">
+      <a href="index.html"><span class="icon-circle home-icon">🏠</span>홈</a>
+      <a href="alerts.html"><span class="icon-circle">🔔</span>알림설정</a>
+      <a href="mypage.html"><span class="icon-circle">👤</span>마이페이지</a>
+    </div>
+  </header>
+
+  <!-- 네비게이션 -->
+  <nav>
+    <a href="index.html">홈</a>
+    <span style="margin-left:12px; color:#555;">› 관리자 페이지</span>
+  </nav>
+
+  <!-- 본문 -->
+  <div id="content">
+    <h2 class="section-title">관리자 페이지</h2>
+    <p class="section-desc">
+      기숙사별 세탁기·건조기 상태를 관리하는 화면입니다.  
+      실제 데이터 연동 없이, 관리자 기능 UI만 예시로 구성된 페이지입니다.
+    </p>
+
+    <!-- 1. 필터 영역 -->
+    <section class="admin-section">
+      <h3>조회 조건</h3>
+      <p>상단에서 기숙사와 기기 종류를 선택하면 아래 상태 관리 표에 적용된다고 가정한 UI입니다.</p>
+
+      <div class="admin-filters">
+        <div class="admin-filter-item">
+          <label for="adm-dorm">기숙사 선택</label>
+          <select id="adm-dorm" name="adm-dorm">
+            <option>매지1학사</option>
+            <option>매지2학사</option>
+            <option>매지3학사</option>
+            <option>세연1학사</option>
+            <option>세연2학사</option>
+            <option>세연3학사</option>
+            <option>청연1학사</option>
+            <option>청연2학사</option>
+          </select>
+        </div>
+
+        <div class="admin-filter-item">
+          <label for="adm-type">기기 종류</label>
+          <select id="adm-type" name="adm-type">
+            <option>세탁기</option>
+            <option>건조기</option>
+          </select>
+        </div>
+
+        <div class="admin-filter-item">
+          <label for="adm-floor">층 / 위치</label>
+          <select id="adm-floor" name="adm-floor">
+            <option>전체</option>
+            <option>지하</option>
+            <option>1층</option>
+            <option>2층</option>
+            <option>3층</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="admin-help">
+        ※ 실제 시스템에서는 위 선택값에 따라 아래 표의 기기 목록이 바뀌도록 구현됩니다. 현재는 디자인 목적으로 고정된 예시입니다.
+      </div>
+    </section>
+
+    <!-- 2. 기기 상태 관리 표 -->
+    <section class="admin-section">
+      <h3>기기 상태 관리</h3>
+      <p>각 기기별 상태, 남은 시간, 코스 정보를 수정하는 관리자용 UI 예시입니다.</p>
+
+      <table class="machine-table">
+        <thead>
+          <tr>
+            <th>기기명</th>
+            <th>위치</th>
+            <th>상태</th>
+            <th>남은 시간(분)</th>
+            <th>코스 정보</th>
+            <th>비고(점검 내용 등)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>세탁기 1번</td>
+            <td>2층 세탁실</td>
+            <td>
+              <select>
+                <option>사용 가능</option>
+                <option selected>사용 중</option>
+                <option>점검 중</option>
+              </select>
+            </td>
+            <td><input type="number" value="23"></td>
+            <td><input type="text" value="표준 코스 (40분)"></td>
+            <td><textarea rows="1" placeholder="예: 세제 부족, 이상 없음 등"></textarea></td>
+          </tr>
+
+          <tr>
+            <td>세탁기 2번</td>
+            <td>2층 세탁실</td>
+            <td>
+              <select>
+                <option selected>사용 가능</option>
+                <option>사용 중</option>
+                <option>점검 중</option>
+              </select>
+            </td>
+            <td><input type="number" value=""></td>
+            <td><input type="text" value="표준 코스 (40분)"></td>
+            <td><textarea rows="1"></textarea></td>
+          </tr>
+
+          <tr>
+            <td>세탁기 3번</td>
+            <td>지하 세탁실</td>
+            <td>
+              <select>
+                <option>사용 가능</option>
+                <option>사용 중</option>
+                <option selected>점검 중</option>
+              </select>
+            </td>
+            <td><input type="number" value=""></td>
+            <td><input type="text" value="사용 중지"></td>
+            <td><textarea rows="1">배수 상태 점검 중</textarea></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="admin-help">
+        ※ 자바스크립트와 서버가 연동되면, 여기서 변경된 값이 각 기숙사 현황 화면에 반영되도록 구현할 수 있습니다.  
+        현재는 입력 폼 UI만 제공하는 시안입니다.
+      </div>
+    </section>
+
+    <!-- 3. 간단 통계 요약 -->
+    <section class="admin-section">
+      <h3>오늘의 기기 사용 통계 (예시)</h3>
+      <p>기숙사 전체 사용 현황을 간단히 확인하는 요약 영역입니다.</p>
+
+      <div class="admin-stats-row">
+        <div class="admin-stat-badge">
+          전체 세탁기 <span>12대</span>
+        </div>
+        <div class="admin-stat-badge">
+          사용 중 <span>5대</span>
+        </div>
+        <div class="admin-stat-badge">
+          사용 가능 <span>6대</span>
+        </div>
+        <div class="admin-stat-badge">
+          점검 중 <span>1대</span>
+        </div>
+      </div>
+
+      <div class="admin-help">
+        ※ 숫자는 예시 값입니다. 실제 구현 시에는 DB에서 집계된 값을 불러오는 영역으로 확장할 수 있습니다.
+      </div>
+    </section>
+
+  </div>
+</div>
+</body>
+</html>
+

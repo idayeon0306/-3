@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>매지1학사 현황</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 이 페이지에서만 쓸 탭/카드 보정 스타일 -->
+  <style>
+    /* ==== 탭 (세탁기 / 건조기) ==== */
+    .tabs {
+      margin-top: 10px;
+    }
+
+    .tabs input[type="radio"] {
+      display: none;
+    }
+
+    .tab-headers {
+      border-bottom: 1px solid #dde4f4;
+      margin-bottom: 14px;
+    }
+
+    .tab-headers label {
+      display: inline-block;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #6b7690;
+    }
+
+    .tabs .tab-panel {
+      display: none;
+    }
+
+    /* 세탁기 탭 선택됨 */
+    #tab-wash:checked ~ .tab-headers label[for="tab-wash"] {
+      color: #123c7a;
+      font-weight: 700;
+      border-bottom: 3px solid #123c7a;
+      margin-bottom: -1px;
+    }
+    #tab-wash:checked ~ .tab-body #wash-panel {
+      display: block;
+    }
+
+    /* 건조기 탭 선택됨 */
+    #tab-dry:checked ~ .tab-headers label[for="tab-dry"] {
+      color: #123c7a;
+      font-weight: 700;
+      border-bottom: 3px solid #123c7a;
+      margin-bottom: -1px;
+    }
+    #tab-dry:checked ~ .tab-body #dry-panel {
+      display: block;
+    }
+
+    /* ==== 카드 UI(기존 machine-box 기반) ==== */
+    .machine-box {
+      position: relative;
+      padding: 14px 18px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+
+    .machine-title {
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    /* 상태 배지는 style.css에 이미 있음:
+       .status-badge, .status-free, .status-busy, .status-check */
+
+    /* 남은 시간 크게 */
+    .machine-info.main-time {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 4px 0;
+      color: #111;
+    }
+
+    /* 추가 정보(진행률/예정시간/코스) */
+    .extra-info {
+      font-size: 13px;
+      color: #555;
+      margin-top: 2px;
+    }
+    .extra-info span::before {
+      content: "· ";
+    }
+
+    /* 종 버튼 */
+    .bell-check {
+      display: none;
+    }
+
+    .bell-label {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #d0d5e0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      color: #f4b41a;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: 0.2s;
+    }
+
+    .bell-check:checked + .bell-label {
+      background: #ffe8b3;
+      border-color: #f59e0b;
+      color: #b45309;
+      box-shadow: 0 0 0 4px rgba(245,158,11,0.35);
+    }
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <header>
+    <h1>연세대학교 미래캠퍼스 세탁기/건조기 표시 서비스</h1>
+    <div class="top-right">
+      <a href="index.html"><span class="icon-circle home-icon">🏠</span>홈</a>
+      <a href="alerts.html"><span class="icon-circle">🔔</span>알림설정</a>
+      <a href="mypage.html"><span class="icon-circle">👤</span>마이페이지</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="index.html">홈</a>
+    <span style="margin-left:12px; color:#555;">› 매지1학사</span>
+  </nav>
+
+  <div id="content">
+    <h2 class="section-title">매지1학사 세탁기/건조기 현황</h2>
+    <p class="section-desc">
+      매지1학사 세탁실의 세탁기와 건조기 사용 상태를 확인하고, 필요한 기기에 알림을 설정할 수 있습니다.
+    </p>
+
+    <div class="tabs">
+      <!-- 탭 라디오 -->
+      <input type="radio" name="tab" id="tab-wash" checked>
+      <input type="radio" name="tab" id="tab-dry">
+
+      <!-- 탭 헤더 -->
+      <div class="tab-headers">
+        <label for="tab-wash">세탁기 현황</label>
+        <label for="tab-dry">건조기 현황</label>
+      </div>
+
+      <!-- 탭 본문 -->
+      <div class="tab-body">
+
+        <!-- ================= 세탁기 탭 ================= -->
+        <div class="tab-panel" id="wash-panel">
+
+          <!-- 세탁기 1번 -->
+          <div class="machine-box busy">
+            <div class="machine-title">
+              세탁기 1번
+              <span class="status-badge status-busy">사용 중</span>
+            </div>
+
+            <div class="machine-info main-time">남은 시간 : 23분</div>
+
+            <div class="extra-info">
+              <span>진행률: 32%</span>
+              <span>예정 완료: 20:32</span>
+              <span>표준 코스 (40분)</span>
+            </div>
+
+            <input type="checkbox" id="w1" class="bell-check">
+            <label for="w1" class="bell-label" title="종료 5분 전 알림 설정">🔔</label>
+          </div>
+
+          <!-- 세탁기 2번 -->
+          <div class="machine-box free">
+            <div class="machine-title">
+              세탁기 2번
+              <span class="status-badge status-free">사용 가능</span>
+            </div>
+
+            <div class="machine-info main-time">남은 시간 : -</div>
+
+            <div class="extra-info">
+              <span>진행률: -</span>
+              <span>예정 완료: -</span>
+              <span>표준 코스 (40분)</span>
+            </div>
+
+            <input type="checkbox" id="w2" class="bell-check">
+            <label for="w2" class="bell-label" title="종료 5분 전 알림 설정">🔔</label>
+          </div>
+
+          <!-- 세탁기 3번 -->
+          <div class="machine-box check">
+            <div class="machine-title">
+              세탁기 3번
+              <span class="status-badge status-check">점검 중</span>
+            </div>
+
+            <div class="machine-info main-time">남은 시간 : -</div>
+
+            <div class="extra-info">
+              <span>진행률: -</span>
+              <span>예정 완료: -</span>
+              <span>표준 코스 (40분)</span>
+            </div>
+
+            <input type="checkbox" id="w3" class="bell-check">
+            <label for="w3" class="bell-label" title="종료 5분 전 알림 설정">🔔</label>
+          </div>
+
+        </div>
+
+        <!-- ================= 건조기 탭 ================= -->
+        <div class="tab-panel" id="dry-panel">
+
+          <!-- 건조기 1번 -->
+          <div class="machine-box busy">
+            <div class="machine-title">
+              건조기 1번
+              <span class="status-badge status-busy">사용 중</span>
+            </div>
+
+            <div class="machine-info main-time">남은 시간 : 15분</div>
+
+            <div class="extra-info">
+              <span>진행률: 62%</span>
+              <span>예정 완료: 20:12</span>
+              <span>표준 코스 (50분)</span>
+            </div>
+
+            <input type="checkbox" id="d1" class="bell-check">
+            <label for="d1" class="bell-label" title="종료 5분 전 알림 설정">🔔</label>
+          </div>
+
+          <!-- 건조기 2번 -->
+          <div class="machine-box free">
+            <div class="machine-title">
+              건조기 2번
+              <span class="status-badge status-free">사용 가능</span>
+            </div>
+
+            <div class="machine-info main-time">남은 시간 : -</div>
+
+            <div class="extra-info">
+              <span>진행률: -</span>
+              <span>예정 완료: -</span>
+              <span>표준 코스 (50분)</span>
+            </div>
+
+            <input type="checkbox" id="d2" class="bell-check">
+            <label for="d2" class="bell-label" title="종료 5분 전 알림 설정">🔔</label>
+          </div>
+
+          <!-- 필요하면 건조기 3, 4번도 같은 형식으로 복붙해서 추가 -->
+
+        </div>
+
+      </div><!-- tab-body -->
+    </div><!-- tabs -->
+
+  </div><!-- content -->
+</div><!-- wrap -->
+</body>
+</html>
+

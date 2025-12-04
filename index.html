@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>세탁기/건조기 표시 서비스 - 홈</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 홈 화면 전용 보완 스타일 -->
+  <style>
+    /* 상단 요약 박스 */
+    .summary-box {
+      margin-top: 10px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #f5f7ff;
+      border: 1px solid #d8e0ff;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 13px;
+      color: #1f2937;
+    }
+    .summary-title {
+      font-weight: 700;
+      color: #123c7a;
+      margin-right: 8px;
+    }
+    .summary-item {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    /* 학사 섹션 묶음 */
+    .dorm-section {
+      margin-top: 24px;
+    }
+    .dorm-section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .dorm-section-title span.icon {
+      font-size: 18px;
+    }
+
+    /* 카드 그리드 */
+    .dorm-grid-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* 카드 기본 스타일 – 여기서 크기/비율 통일 */
+    .dorm-card {
+      display: block;
+      width: 180px;           /* 카드 폭 고정 */
+      min-height: 100px;      /* 카드 높이 고정 느낌 */
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .dorm-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
+    }
+
+    .dorm-card-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .dorm-card-name {
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dorm-card-name .emoji {
+      font-size: 18px;
+    }
+    .dorm-card-meta {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+
+    /* 매지학사 카드만 연한 배경사진 */
+    .maeji-card {
+      background-image: url("https://wjdorm.yonsei.ac.kr/_res/wjdorm/img/dormitory/%ED%95%9C%EC%A4%80_%EB%A7%A4%EC%A7%801%ED%95%99%EC%82%AC_452%ED%98%B8_2.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: rgba(255, 255, 255, 0.6); /* 사진 위에 흰색 덧칠해서 연하게 */
+      background-blend-mode: lighten;
+    }
+    /* 사진 위 텍스트 가독성 위해 살짝 흰 박스 */
+    .maeji-card .dorm-card-inner {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 6px 8px;
+    }
+
+    /* 세연학사 카드 배경 */
+    
+    .seyeon-card {
+     background-image: url("https://wjdorm.yonsei.ac.kr/_res/wjdorm/img/dormitory/%EC%83%9D%ED%99%9C%EA%B4%80_01.JPG");
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+
+     background-color: rgba(255, 255, 255, 0.5);
+     background-blend-mode: lighten;
+}
+
+    .seyeon-card .dorm-card-inner {
+     background: rgba(255, 255, 255, 0.7);
+     border-radius: 12px;
+     padding: 6px 8px;
+}
+
+/* 청연학사 카드 배경 */
+    .cheong-card {
+     background-image: url("https://wjdorm.yonsei.ac.kr/_res/wjdorm/img/dormitory/%EC%83%9D%ED%99%9C%EA%B4%80_04.jpg");
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+
+     background-color: rgba(255, 255, 255, 0.5);
+     background-blend-mode: lighten;
+}
+
+    .cheong-card .dorm-card-inner {
+     background: rgba(255, 255, 255, 0.7);
+     border-radius: 12px;
+     padding: 6px 8px;
+}
+
+    /* 관리자 진입 링크 */
+    .admin-entry {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+    .admin-entry a {
+      color: #6b7280;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+<div id="wrap">
+
+  <!-- 헤더 -->
+  <header>
+    <h1>연세대학교 미래캠퍼스 세탁기/건조기 표시 서비스</h1>
+    <div class="top-right">
+      <a href="alerts.html"><span class="icon-circle">🔔</span>알림설정</a>
+      <a href="mypage.html"><span class="icon-circle">👤</span>마이페이지</a>
+    </div>
+  </header>
+
+  <!-- nav -->
+  <nav>
+    <span style="font-weight:600; color:#123c7a;">홈</span>
+  </nav>
+
+  <!-- 본문 -->
+  <div id="content">
+    <h2 class="section-title">기숙사 세탁기/건조기 현황</h2>
+    <p class="section-desc">
+      거주하고 있는 학사를 선택해 세탁기·건조기 상태를 확인하고, 필요한 경우 알림을 설정할 수 있습니다.
+    </p>
+
+    <!-- 전체 요약 박스 (숫자는 예시 값) -->
+    <div class="summary-box">
+      <div class="summary-title">현재 전체 기기 상태 (예시)</div>
+      <div class="summary-item">사용 중 <strong>12대</strong></div>
+      <div class="summary-item">사용 가능 <strong>22대</strong></div>
+      <div class="summary-item">점검 중 <strong>1대</strong></div>
+    </div>
+
+    <!-- 매지학사 섹션 -->
+    <section class="dorm-section">
+      <div class="dorm-section-title">
+        <span class="icon">🏢</span>
+        <span>매지학사</span>
+      </div>
+      <div class="dorm-grid-group">
+        <a href="maeji1.html" class="dorm-card maeji-card">
+          <div class="dorm-card-inner">
+            <div class="dorm-card-name">
+              <span class="emoji">🧺</span>
+              <span>매지1학사</span>
+            </div>
+            <div class="dorm-card-meta">세탁기 3대 · 건조기 3대 (예시)</div>
+          </div>
+        </a>
+
+        <a href="maeji2.html" class="dorm-card maeji-card">
+          <div class="dorm-card-inner">
+            <div class="dorm-card-name">
+              <span class="emoji">🧺</span>
+              <span>매지2학사</span>
+            </div>
+            <div class="dorm-card-meta">세탁기 3대 · 건조기 3대 (예시)</div>
+          </div>
+        </a>
+
+        <a href="maeji3.html" class="dorm-card maeji-card">
+          <div class="dorm-card-inner">
+            <div class="dorm-card-name">
+              <span class="emoji">🧺</span>
+              <span>매지3학사</span>
+            </div>
+            <div class="dorm-card-meta">세탁기 3대 · 건조기 3대 (예시)</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 세연학사 섹션 -->
+    <section class="dorm-section">
+      <div class="dorm-section-title">
+        <span class="icon">🏢</span>
+        <span>세연학사</span>
+      </div>
+      <div class="dorm-grid-group">
+        <a href="seyeon1.html" class="dorm-card seyeon-card">
+          <div class="dorm-card-inner">
+            <div class="dorm-card-name">
+              <span class="emoji">🧺</span>
+              <span>세연1학사</span>
+            </div>
+            <div class="dorm-card-meta">세탁기 3대 · 건조기 3대 (예시)</div>
+          </div>
+        </a>
+
+        <a href="seyeon2.html" class="dorm-card seyeon-card">
+          <div class="dorm-card-inner">
+            <div class="dorm-card-name">
+              <span class="emoji">🧺</span>
+              <span>세연2학사</span>
+            </div>
+            <div class="dorm-card-meta">세탁기 3대 · 건조기 3대 (예시)</div>
+          </div>
+        </a>
+
+        <a href="seyeon3.html" class="dorm-card seyeon-card">
+          <div class="dorm-card-inner">
+            <div class="dorm-card-name">
+              <span class="emoji">🧺</span>
+              <span>세연3학사</span>
+            </div>
+            <div class="dorm-card-meta">세탁기 3대 · 건조기 3대 (예시)</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 청연학사 섹션 -->
+    <section class="dorm-section">
+      <div class="dorm-section-title">
+        <span class="icon">🏢</span>
+        <span>청연학사</span>
+      </div>
+      <div class="dorm-grid-group">
+        <a href="cheongyeon1.html" class="dorm-card cheong-card">
+          <div class="dorm-card-inner">
+            <div class="dorm-card-name">
+              <span class="emoji">🧺</span>
+              <span>청연1학사</span>
+            </div>
+            <div class="dorm-card-meta">세탁기 3대 · 건조기 3대 (예시)</div>
+          </div>
+        </a>
+
+        <a href="cheongyeon2.html" class="dorm-card cheong-card">
+          <div class="dorm-card-inner">
+            <div class="dorm-card-name">
+              <span class="emoji">🧺</span>
+              <span>청연2학사</span>
+            </div>
+            <div class="dorm-card-meta">세탁기 3대 · 건조기 3대 (예시)</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 관리자 전용 진입 링크 -->
+    <div class="admin-entry">
+      <a href="admin.html">관리자 전용 페이지</a>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
+

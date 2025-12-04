@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>청연2학사 현황</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tabs { margin-top:10px; }
+    .tabs input[type="radio"] { display:none; }
+    .tab-headers { border-bottom:1px solid #dde4f4; margin-bottom:14px; }
+    .tab-headers label {
+      display:inline-block; padding:8px 16px; font-size:14px;
+      cursor:pointer; color:#6b7690;
+    }
+    .tabs .tab-panel { display:none; }
+    #tab-wash:checked ~ .tab-headers label[for="tab-wash"] {
+      color:#123c7a; font-weight:700; border-bottom:3px solid #123c7a; margin-bottom:-1px;
+    }
+    #tab-wash:checked ~ .tab-body #wash-panel { display:block; }
+    #tab-dry:checked ~ .tab-headers label[for="tab-dry"] {
+      color:#123c7a; font-weight:700; border-bottom:3px solid #123c7a; margin-bottom:-1px;
+    }
+    #tab-dry:checked ~ .tab-body #dry-panel { display:block; }
+
+    .machine-box {
+      position:relative; padding:14px 18px; border-radius:12px;
+      margin-bottom:12px; box-shadow:0 3px 8px rgba(0,0,0,0.05);
+    }
+    .machine-title {
+      font-size:15px; font-weight:600;
+      display:flex; align-items:center; gap:8px;
+      color:#111827; margin-bottom:4px;
+    }
+    .machine-info.main-time {
+      font-size:17px; font-weight:700; margin:4px 0; color:#111;
+    }
+    .extra-info { font-size:13px; color:#555; margin-top:2px; }
+    .extra-info span::before { content:"· "; }
+
+    .bell-check { display:none; }
+    .bell-label {
+      position:absolute; right:14px; top:14px;
+      width:32px; height:32px; border-radius:50%;
+      border:2px solid #d0d5e0; background:#fff;
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; cursor:pointer; color:#f4b41a;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:0.2s;
+    }
+    .bell-check:checked + .bell-label {
+      background:#ffe8b3; border-color:#f59e0b;
+      color:#b45309; box-shadow:0 0 0 4px rgba(245,158,11,0.35);
+    }
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <header>
+    <h1>연세대학교 미래캠퍼스 세탁기/건조기 표시 서비스</h1>
+    <div class="top-right">
+      <a href="index.html"><span class="icon-circle home-icon">🏠</span>홈</a>
+      <a href="alerts.html"><span class="icon-circle">🔔</span>알림설정</a>
+      <a href="mypage.html"><span class="icon-circle">👤</span>마이페이지</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="index.html">홈</a>
+    <span style="margin-left:12px; color:#555;">› 청연2학사</span>
+  </nav>
+
+  <div id="content">
+    <h2 class="section-title">청연2학사 세탁기/건조기 현황</h2>
+    <p class="section-desc">
+      청연2학사 세탁실의 세탁기와 건조기 사용 상태를 확인하고, 필요한 기기에 알림을 설정할 수 있습니다.
+    </p>
+
+    <div class="tabs">
+      <input type="radio" name="tab" id="tab-wash" checked>
+      <input type="radio" name="tab" id="tab-dry">
+
+      <div class="tab-headers">
+        <label for="tab-wash">세탁기 현황</label>
+        <label for="tab-dry">건조기 현황</label>
+      </div>
+
+      <div class="tab-body">
+
+        <div class="tab-panel" id="wash-panel">
+          <div class="machine-box busy">
+            <div class="machine-title">
+              세탁기 1번
+              <span class="status-badge status-busy">사용 중</span>
+            </div>
+            <div class="machine-info main-time">남은 시간 : 7분</div>
+            <div class="extra-info">
+              <span>진행률: 85%</span>
+              <span>예정 완료: 19:35</span>
+              <span>표준 코스 (35분)</span>
+            </div>
+            <input type="checkbox" id="c2w1" class="bell-check">
+            <label for="c2w1" class="bell-label">🔔</label>
+          </div>
+
+          <div class="machine-box free">
+            <div class="machine-title">
+              세탁기 2번
+              <span class="status-badge status-free">사용 가능</span>
+            </div>
+            <div class="machine-info main-time">남은 시간 : -</div>
+            <div class="extra-info">
+              <span>진행률: -</span>
+              <span>예정 완료: -</span>
+              <span>표준 코스 (40분)</span>
+            </div>
+            <input type="checkbox" id="c2w2" class="bell-check">
+            <label for="c2w2" class="bell-label">🔔</label>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="dry-panel">
+          <div class="machine-box busy">
+            <div class="machine-title">
+              건조기 1번
+              <span class="status-badge status-busy">사용 중</span>
+            </div>
+            <div class="machine-info main-time">남은 시간 : 22분</div>
+            <div class="extra-info">
+              <span>진행률: 30%</span>
+              <span>예정 완료: 20:10</span>
+              <span>강력 코스 (60분)</span>
+            </div>
+            <input type="checkbox" id="c2d1" class="bell-check">
+            <label for="c2d1" class="bell-label">🔔</label>
+          </div>
+
+          <div class="machine-box free">
+            <div class="machine-title">
+              건조기 2번
+              <span class="status-badge status-free">사용 가능</span>
+            </div>
+            <div class="machine-info main-time">남은 시간 : -</div>
+            <div class="extra-info">
+              <span>진행률: -</span>
+              <span>예정 완료: -</span>
+              <span>표준 코스 (45분)</span>
+            </div>
+            <input type="checkbox" id="c2d2" class="bell-check">
+            <label for="c2d2" class="bell-label">🔔</label>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

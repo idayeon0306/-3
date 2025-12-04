@@ -1,0 +1,490 @@
+/* ===== 기본 설정 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "맑은 고딕", 돋움, 굴림;
+  background: linear-gradient(135deg, #e8f0ff, #f5f7fb);
+}
+
+a {
+  color: inherit;
+}
+
+/* ===== 전체 레이아웃 ===== */
+#wrap {
+  width: 960px;
+  margin: 24px auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid #d3ddf3;
+}
+
+/* ===== 헤더 ===== */
+header {
+  padding: 16px 24px;
+  background: #123c7a;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+header h1 {
+  float: left;
+  font-size: 20px;
+}
+
+.top-right {
+  float: right;
+}
+
+.top-right a {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-size: 11px;
+  text-decoration: none;
+  margin-left: 16px;
+  color: #e6eeff;
+}
+
+.icon-circle {
+  display: block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 16px;
+  border: 1px solid #e6eeff;
+  margin: 0 auto 4px;
+  font-size: 16px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* 종 위의 빨간 점 (알림 있음 표시) */
+.badge-dot {
+  position: absolute;
+  right: 4px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: #ff3b30;
+  border: 2px solid #123c7a;
+}
+
+/* 홈 아이콘용 */
+.home-icon {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+}
+
+/* ===== 상단 네비게이션 ===== */
+nav {
+  padding: 10px 24px;
+  border-bottom: 1px solid #dde4f4;
+  background: #f7f9ff;
+  font-size: 14px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #123c7a;
+  border-bottom: 2px solid #123c7a;
+  padding-bottom: 3px;
+  font-weight: bold;
+}
+
+/* ===== 공통 본문 컨테이너 ===== */
+#content {
+  padding: 20px 24px 28px 24px;
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #123c7a;
+}
+
+.section-desc {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+/* ===== 홈 화면 – 카드 레이아웃 ===== */
+.card-wrap {
+  overflow: hidden;
+}
+
+.dorm-card {
+  float: left;
+  width: 30%;
+  margin-right: 5%;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #dbe3f5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dorm-card:last-child {
+  margin-right: 0;
+}
+
+.dorm-name {
+  font-size: 16px;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+  color: #123c7a;
+}
+
+.building-link {
+  display: block;
+  border-radius: 6px;
+  padding: 9px;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 8px;
+  text-decoration: none;
+  background: #f4f7ff;
+  border: 1px solid #c7d2f5;
+  transition: 0.2s;
+}
+
+.building-link:hover {
+  background: #dfe8ff;
+}
+
+/* ===== 구분선 ===== */
+.divider {
+  height: 1px;
+  margin: 18px 0 16px 0;
+  background: #dde4f4;
+}
+
+/* ===== 알림 리스트 ===== */
+.alert-list {
+  list-style: none;
+}
+
+.alert-item {
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #dde4f4;
+  background: #fdfdfd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  font-size: 13px;
+}
+
+.alert-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.alert-time {
+  font-size: 11px;
+  color: #777;
+}
+
+/* ===== 마이페이지 ===== */
+.mypage-section {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.mypage-box {
+  flex: 1 1 260px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #dde4f4;
+  background: #fafbff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+  font-size: 13px;
+}
+
+.mypage-box h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #123c7a;
+}
+
+.mypage-box label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.mypage-box input[type="text"],
+.mypage-box select {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #cbd3ea;
+  font-size: 13px;
+}
+
+.mypage-note {
+  font-size: 11px;
+  color: #777;
+  margin-top: 6px;
+}
+
+/* 위로 가기 링크 */
+.top-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #777;
+  text-decoration: none;
+}
+
+.top-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== 동별 현황 페이지 – 탭 ===== */
+.tabs {
+  margin-top: 6px;
+}
+
+/* 라디오 숨김 */
+.tabs input[type="radio"] {
+  display: none;
+}
+
+/* 탭 머리 */
+.tab-headers {
+  border-bottom: 1px solid #dde4f4;
+  margin-bottom: 14px;
+}
+
+.tab-headers label {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #6b7690;
+}
+
+.tab-headers label:hover {
+  color: #123c7a;
+}
+
+.tabs .tab-panel {
+  display: none;
+}
+
+/* 세탁기 탭 활성화 */
+#tab-wash:checked ~ .tab-headers label[for="tab-wash"] {
+  color: #123c7a;
+  font-weight: bold;
+  border-bottom: 2px solid #123c7a;
+}
+
+/* 건조기 탭 활성화 */
+#tab-dry:checked ~ .tab-headers label[for="tab-dry"] {
+  color: #123c7a;
+  font-weight: bold;
+  border-bottom: 2px solid #123c7a;
+}
+
+/* 탭 내용 표시 */
+#tab-wash:checked ~ .tab-body #wash-panel {
+  display: block;
+}
+
+#tab-dry:checked ~ .tab-body #dry-panel {
+  display: block;
+}
+
+/* ===== 기기 박스 (세탁기/건조기 상태) ===== */
+.machine-box {
+  width: 100%;
+  padding: 15px 16px;
+  margin-bottom: 14px;
+  position: relative;
+  border-radius: 10px;
+  background: #ffffff;
+  border-left-width: 6px;
+  border-left-style: solid;
+  border-right: 1px solid #dbe3f5;
+  border-top: 1px solid #dbe3f5;
+  border-bottom: 1px solid #dbe3f5;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+}
+
+.machine-title {
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.machine-info {
+  font-size: 13px;
+  color: #555;
+}
+
+/* 상태 색상 */
+.free {
+  border-left-color: #2ecc71;
+  background: linear-gradient(90deg, #f3fff8, #ffffff);
+}
+
+.busy {
+  border-left-color: #e74c3c;
+  background: linear-gradient(90deg, #fff5f4, #ffffff);
+}
+
+.check {
+  border-left-color: #7f8c8d;
+  background: linear-gradient(90deg, #f4f4f4, #ffffff);
+}
+
+/* 상태 배지 */
+.status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  border-radius: 20px;
+  margin-left: 8px;
+}
+
+.status-free {
+  background: #e8f9f0;
+  color: #2ecc71;
+  border: 1px solid #2ecc71;
+}
+
+.status-busy {
+  background: #ffe6e6;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.status-check {
+  background: #f3f3f3;
+  color: #7f8c8d;
+  border: 1px solid #7f8c8d;
+}
+
+/* 알림 종 버튼 */
+.bell-check {
+  display: none;
+}
+
+.bell-label {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+  text-align: center;
+  border: 1px solid #ced4ea;
+  background: #f7f8fd;
+  color: #5a6385;
+  transition: 0.2s;
+}
+
+.bell-check:checked + .bell-label {
+  background: #ffe8b3;
+  border-color: #cc9900;
+  color: #cc9900;
+  box-shadow: 0 0 0 3px rgba(255, 200, 80, 0.4);
+  font-weight: bold;
+}
+
+/* ============================
+   확장형 세탁기 카드 스타일
+=============================*/
+
+.machine-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  border-left: 10px solid #e66a6a; /* 상태별로 색 바뀜 */
+}
+
+/* 제목 + 상태 배지 */
+.machine-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 4px;
+  font-family: "Pretendard", "SUIT", sans-serif;
+}
+
+.status-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-left: 8px;
+  background: #ffdede;
+  color: #c03a3a;
+  font-weight: 600;
+}
+
+/* 남은 시간 큼직하게 */
+.time-remaining {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 10px 0 6px 0;
+  color: #111;
+  font-family: "Pretendard", "SUIT", sans-serif;
+}
+
+/* 작은 정보 3줄 */
+.machine-subinfo {
+  font-size: 14px;
+  color: #444;
+  margin: 3px 0;
+  font-family: "Pretendard", "SUIT", sans-serif;
+}
+
+/* 오른쪽 종 버튼 */
+.machine-bell {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #d1d5e0;
+  background: #fff;
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.machine-bell:hover {
+  background: #f0f4ff;
+  border-color: #94a3ff;
+}
+
+/* 체크 상태 */
+.bell-check { display: none; }
+
+.bell-check:checked + .machine-bell {
+  background: #ffe8b3;
+  border-color: #f59e0b;
+  color: #b45309;
+  box-shadow: 0 0 0 4px rgba(245,158,11,0.3);
+}
+

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>알림함</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* 상단 알림 종에 빨간 점 (CSS만 사용) */
+    .icon-circle.has-unread {
+      position: relative;
+    }
+    .icon-circle.has-unread::after {
+      content: "";
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.8);
+    }
+
+    /* 간단 요약 박스 */
+    .alert-summary-box {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #f5f7ff;
+      border: 1px solid #d8e0ff;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .alert-summary-box strong {
+      color: #123c7a;
+    }
+
+    /* 필터 버튼들 (기능 없음) */
+    .alert-filters {
+      margin-top: 18px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .alert-filter-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #d0d5e0;
+      background: #ffffff;
+      color: #4b5563;
+      cursor: default;
+    }
+
+    .alert-filter-btn.active {
+      background: #123c7a;
+      color: #fff;
+      border-color: #123c7a;
+      font-weight: 600;
+    }
+
+    /* 알림 목록 */
+    .alert-list {
+      margin-top: 10px;
+    }
+
+    .alert-item {
+      padding: 12px 14px 12px 14px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      font-size: 13px;
+    }
+
+    /* 읽지 않은 알림 */
+    .alert-item.unread {
+      background: #fff8ea;
+      border-left: 6px solid #f59e0b;
+    }
+
+    /* 읽은 알림 */
+    .alert-item.read {
+      background: #f9fafb;
+      border-left: 6px solid #d1d5db;
+    }
+
+    .alert-title-row {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    .alert-main-text {
+      color: #374151;
+      margin-bottom: 4px;
+      line-height: 1.4;
+      font-size: 13px;
+    }
+
+    .alert-meta {
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .alert-meta span::before {
+      content: "· ";
+    }
+
+    /* 알림 종류 태그 */
+    .alert-type {
+      padding: 3px 8px;
+      font-size: 11px;
+      border-radius: 999px;
+      margin-left: 4px;
+    }
+
+    .yellow { background: #fef3c7; color: #92400e; }
+    .green { background: #dcfce7; color: #166534; }
+    .blue { background: #dbeafe; color: #1e40af; }
+
+  </style>
+</head>
+
+<body>
+<div id="wrap">
+
+  <!-- 헤더 -->
+  <header>
+    <h1>연세대학교 미래캠퍼스 세탁기/건조기 표시 서비스</h1>
+
+    <div class="top-right">
+      <a href="index.html"><span class="icon-circle home-icon">🏠</span>홈</a>
+
+      <!-- 읽지 않은 알림을 표시하는 빨간 점 -->
+      <a href="alerts.html"><span class="icon-circle has-unread">🔔</span>알림설정</a>
+
+      <a href="mypage.html"><span class="icon-circle">👤</span>마이페이지</a>
+    </div>
+  </header>
+
+  <!-- 네비 -->
+  <nav>
+    <a href="index.html">홈</a>
+    <span style="margin-left:12px; color:#555;">› 알림함</span>
+  </nav>
+
+  <!-- 본문 -->
+  <div id="content">
+
+    <h2 class="section-title">알림함</h2>
+    <p class="section-desc">
+      최근에 도착한 세탁기·건조기 알림을 확인할 수 있습니다. (UI 예시 화면)
+    </p>
+
+    <!-- 상단 요약 박스 -->
+    <div class="alert-summary-box">
+      <strong>안 읽은 알림 2개</strong>가 있습니다.
+    </div>
+
+    <!-- 필터 버튼들 -->
+    <div class="alert-filters">
+      <div class="alert-filter-btn active">전체</div>
+      <div class="alert-filter-btn">안 읽음</div>
+      <div class="alert-filter-btn">읽음</div>
+    </div>
+
+    <!-- 알림 리스트 -->
+    <div class="alert-list">
+
+      <!-- 안 읽은 알림 1 -->
+      <div class="alert-item unread">
+        <div class="alert-title-row">
+          세연3학사 2층 세탁기 A 
+          <span class="alert-type yellow">종료 5분 전</span>
+        </div>
+        <div class="alert-main-text">
+          세탁기 A의 세탁이 <strong>5분 후 완료</strong>될 예정입니다.
+        </div>
+        <div class="alert-meta">
+          <span>20:27 수신</span>
+          <span>예정 종료 20:32</span>
+        </div>
+      </div>
+
+      <!-- 안 읽은 알림 2 -->
+      <div class="alert-item unread">
+        <div class="alert-title-row">
+          매지1학사 1층 건조기 1번
+          <span class="alert-type green">건조 완료</span>
+        </div>
+        <div class="alert-main-text">
+          건조기 1번의 <strong>건조가 완료</strong>되었습니다.
+        </div>
+        <div class="alert-meta">
+          <span>19:58 수신</span>
+          <span>완료 19:57</span>
+        </div>
+      </div>
+
+      <!-- 읽은 알림 예시 -->
+      <div class="alert-item read">
+        <div class="alert-title-row">
+          청연2학사 지하 세탁기 2번
+          <span class="alert-type blue">세탁 완료</span>
+        </div>
+        <div class="alert-main-text">
+          세탁기 2번의 세탁이 완료되었습니다.
+        </div>
+        <div class="alert-meta">
+          <span>18:12 수신</span>
+          <span>완료 18:10</span>
+        </div>
+      </div>
+
+      <!-- 읽은 알림 예시 2 -->
+      <div class="alert-item read">
+        <div class="alert-title-row">
+          매지3학사 3층 건조기 2번 
+          <span class="alert-type yellow">종료 5분 전</span>
+        </div>
+
+        <div class="alert-main-text">
+          건조기 2번이 곧 종료됩니다.
+        </div>
+
+        <div class="alert-meta">
+          <span>17:05 수신</span>
+          <span>예정 종료 17:10</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
